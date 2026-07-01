@@ -4,6 +4,8 @@
 // Call getComputerChoice() in switch
 // Store output from switch in getComputerChoiceString
 // Obtain user input with prompt()
+// INIT variable humanScore to track human score
+// INIT variable computerScore to track computer score
 
 
 let getComputerChoice = () => {
@@ -31,3 +33,7 @@ switch (getComputerChoice()) {
 
 let getHumanChoice = prompt("Rock, Paper, Scissors? Choose ONE");
 console.log(getHumanChoice);
+
+
+let humanScore = 0;
+let computerScore = 0;
