@@ -3,6 +3,7 @@
 // INIT getComputerChoiceString variable
 // Call getComputerChoice() in switch
 // Store output from switch in getComputerChoiceString
+// Obtain user input with prompt()
 
 
 let getComputerChoice = () => {
@@ -27,3 +28,6 @@ switch (getComputerChoice()) {
 }
 
 // alert(getComputerChoiceString);
+
+let getHumanChoice = prompt("Rock, Paper, Scissors? Choose ONE");
+console.log(getHumanChoice);
