@@ -7,45 +7,42 @@
 // INIT variable humanScore to track human score
 // INIT variable computerScore to track computer score
 
+//? Refactoring the code and placing code into functions
+// collect computer choice//
+// randomize a computer choice between 1 and 3 with getComputerChoiceRandom()
+let getComputerChoiceRandom = () => {
+        return Math.floor((Math.random() * 3) + 1);
+}
 
+// call randomized computer choice getComputerChoiceRandom() with getComputerChoice()
 let getComputerChoice = () => {
-    return Math.floor((Math.random() * 3) + 1);
+    switch (getComputerChoiceRandom()) {
+        case 1:
+           return "rock";
+        case 2:
+            return "paper";
+        case 3:
+            return "scissors";
+        default:
+            return "rock_paper_scissors";
+    }
 }
 
-let getComputerChoiceString;
+// collect human choice
+let getHumanChoice = () => {
+    let userChoice = prompt("Rock, Paper, Scissors? Choose ONE");
+    return userChoice.toLowerCase();
 
-switch (getComputerChoice()) {
-    case 1:
-        getComputerChoiceString = "rock";
-        break;
-    case 2:
-        getComputerChoiceString = "paper";
-        break;
-    case 3:
-        getComputerChoiceString = "scissors";
-        break;
-    default:
-        getComputerChoiceString = "rock_paper_scissors";
-        break;
 }
 
-console.log(`getComputerChoiceString: ${getComputerChoiceString}`);
-
-let getHumanChoice = prompt("Rock, Paper, Scissors? Choose ONE");
-
-console.log(`getHumanChoice: ${getHumanChoice}`);
-
-
+// init human score
 let humanScore = 0;
+// init computer score
 let computerScore = 0;
 
-// console.log(`Computer: ${computerChoice}
-// Your Choice: ${humanChoice}
 
+// play game
 let playRound = (humanChoice, computerChoice) => {
-    humanScore = 0;
-    computerScore = 0;
-
     if (humanChoice === computerChoice) {
         console.log(`Computer: ${computerChoice}
         Your choice: ${humanChoice}.
@@ -61,7 +58,7 @@ let playRound = (humanChoice, computerChoice) => {
         if (computerChoice === "paper"){
             console.log(`Computer: ${computerChoice}
             Your Choice: ${humanChoice}
-            You lose! Rock covers paper!`);
+            You lose! Paper covers rock!`);
             
             return ++computerScore;
 
@@ -112,11 +109,6 @@ Scissors`);
     }
 }
 
-let getHumanChoiceLowercase = getHumanChoice.toLowerCase();
-let computerChoice = getComputerChoiceString;
-
-;
-
 // create playGame() to track the loops
 // call playRound() in play game to capture the winning condition
 // use the right return in playRound() to return code to playGame() 
@@ -124,4 +116,28 @@ let computerChoice = getComputerChoiceString;
 // if humanScore === 5 and computerScore < 5, console logs CONGRATULATIONS, YOU WON
 // if computerScore === 5 and humanScore < 5, console logs GAME OVER  
 
-console.log(playRound(getHumanChoiceLowercase, computerChoice));
+
+
+// Create playGame()
+
+function playGame() {
+        playRound(getHumanChoice(), getComputerChoice());
+            console.log(`Computer: ${computerScore}
+        You: ${humanScore}`)
+
+    // for (let i = 0; i === 0; ++i) {
+
+
+    // }
+}
+
+playGame();
+
+// pass `playRound(getHumanChoiceLowercase, computerChoice)` to result variable
+// playGame() contains a for statement
+// the for statement runs until (humanScore === 5) || (computerScore === 5)
+// IF ((humanscore === 5) || (computerScore === 5)
+//  ELSE IF humanScore === 5 
+//      THEN Congratulations, you win
+//  ELSE IF computerScore === 5
+//      THEN You lose
