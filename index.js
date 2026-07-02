@@ -36,8 +36,8 @@ let getHumanChoice = prompt("Rock, Paper, Scissors? Choose ONE");
 console.log(`getHumanChoice: ${getHumanChoice}`);
 
 
-// let humanScore = 0;
-// let computerScore = 0;
+let humanScore = 0;
+let computerScore = 0;
 
 // console.log(`Computer: ${computerChoice}
 // Your Choice: ${humanChoice}
@@ -61,68 +61,47 @@ let playRound = (humanChoice, computerChoice) => {
         if (computerChoice === "paper"){
             console.log(`Computer: ${computerChoice}
             Your Choice: ${humanChoice}
-            You lose! Rock covers paper!
+            You lose! Rock covers paper!`);
             
-            SCORE
-            Computer: ${++computerScore}
-            You: ${humanScore}
-            `);
-            // console.log(++computerScore);
+            return ++computerScore;
 
         } else if (computerChoice === "scissors") {
             console.log(`Computer: ${computerChoice}
             Your Choice: ${humanChoice}
-            You win! Rock breaks Scissors! 
+            You win! Rock breaks Scissors!`);
 
-            SCORE
-            Computer: ${computerScore}
-            You: ${++humanScore}
-            `);
+            return ++humanScore;
         }
     } else if (humanChoice === "paper") {
         if (computerChoice === "rock") {
             console.log(`Computer: ${computerChoice}
             Your Choice: ${humanChoice}
-            You win! Paper covers Rock   
+            You win! Paper covers Rock`);
 
-            SCORE
-            Computer: ${computerScore}
-            You: ${++humanScore}
-            `);
+            return ++humanScore;
 
         } else if (computerChoice === "scissors") {
             console.log(`Computer: ${computerChoice}
             Your Choice: ${humanChoice}
             You lose! Scissors cuts Paper!
-            
-                        
-            SCORE
-            Computer: ${++computerScore}
-            You: ${humanScore}
             `);
+
+            return ++computerScore;
         }
     } else if (humanChoice === "scissors") {
         if (computerChoice === "rock") {
             console.log(`Computer: ${computerChoice}
             Your Choice: ${humanChoice}
-            You lose! Rock breaks Scissors!
+            You lose! Rock breaks Scissors!`);
             
-                        
-            SCORE
-            Computer: ${++computerScore}
-            You: ${humanScore}
-            `);
+            return ++computerScore;
 
         } else if (computerChoice === "paper") {
             console.log(`Computer: ${computerChoice}
             Your Choice: ${humanChoice}
-            You win! Scissors cuts Paper!
-            
-                        
-            SCORE
-            Computer: ${computerScore}
-            You: ${++humanScore}
-            `);
+            You win! Scissors cuts Paper!`);
+
+            return ++humanScore;
 
         }
     } else {
@@ -136,6 +115,13 @@ Scissors`);
 let getHumanChoiceLowercase = getHumanChoice.toLowerCase();
 let computerChoice = getComputerChoiceString;
 
-playRound(getHumanChoiceLowercase, computerChoice);
+;
 
+// create playGame() to track the loops
+// call playRound() in play game to capture the winning condition
+// use the right return in playRound() to return code to playGame() 
+// Increment humanScore or computerScore based on winning condition pin round
+// if humanScore === 5 and computerScore < 5, console logs CONGRATULATIONS, YOU WON
+// if computerScore === 5 and humanScore < 5, console logs GAME OVER  
 
+console.log(playRound(getHumanChoiceLowercase, computerChoice));
