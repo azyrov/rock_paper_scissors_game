@@ -1,9 +1,13 @@
+// STAGE ONE
 // INIT getComputerChoice() function
 // Pass math.floor(math.random()) to randomise between 1 and 3
-// INIT getComputerChoiceString variable
 // Call getComputerChoice() in switch
-// Store output from switch in getComputerChoiceString
+// Store output from switch in getComputerChoiceRandom
+// STAGE TWO
+// write function to obtain user input
 // Obtain user input with prompt()
+// return user input to getHumanChoice()
+// STAGE THREE
 // INIT variable humanScore to track human score
 // INIT variable computerScore to track computer score
 
@@ -29,28 +33,26 @@ let getComputerChoice = () => {
 }
 
 // collect human choice
+
 let getHumanChoice = () => {
     let userChoice = prompt("Rock, Paper, Scissors? Choose ONE");
     return userChoice.toLowerCase();
-
 }
 
 // init human score
+//i allows access in global scope
 let humanScore = 0;
 // init computer score
+//i allows access in global scope
 let computerScore = 0;
 
 
-// play game
+// play round
 let playRound = (humanChoice, computerChoice) => {
     if (humanChoice === computerChoice) {
         console.log(`Computer: ${computerChoice}
         Your choice: ${humanChoice}.
         Jinx! Try again.
-        
-        SCORE
-        Computer: ${computerScore}
-        You: ${humanScore};
         `);
         
 
@@ -109,35 +111,57 @@ Scissors`);
     }
 }
 
-// create playGame() to track the loops
-// call playRound() in play game to capture the winning condition
-// use the right return in playRound() to return code to playGame() 
-// Increment humanScore or computerScore based on winning condition pin round
-// if humanScore === 5 and computerScore < 5, console logs CONGRATULATIONS, YOU WON
-// if computerScore === 5 and humanScore < 5, console logs GAME OVER  
+// STAGE FOUR
+// create playGame() to repeat playRound()
+//i playGame() contains loop playRound() and result message -> gameResult()
+// call playRound() in playGame() to capture the winning condition
+//i use the correct return in playRound() to return round score to playGame() 
+// Increment humanScore or computerScore based on winning condition in round
+//i if humanScore === 5 and computerScore < 5, console logs CONGRATULATIONS, YOU WON
+//i if computerScore === 5 and humanScore < 5, console logs GAME OVER  
+// output cummulative round score with roundScore()
+// output final game result with gameResult() 
 
 
 
 // Create playGame()
-
+//i use the correct return in playRound() to return round score to playGame() 
 function playGame() {
-        playRound(getHumanChoice(), getComputerChoice());
-            console.log(`Computer: ${computerScore}
-        You: ${humanScore}`)
+    // while condition finds the first player to reach 5
+    //i the first false condition makes thes while condition false -> while (false && true) 
+    //i while condition loops the playRound() as far as no player has reached score of 5
+    while ((computerScore < 5) && (humanScore < 5)) {
+    console.log(`BEGIN ROUND!`);
+    // call playRound() to play a round
+    playRound(getHumanChoice(), getComputerChoice());
+    // call roundScore() to display cummulative round score
+    roundScore();
+    }
 
-    // for (let i = 0; i === 0; ++i) {
+    // call gameResult()
+    gameResult();
+}
 
+// collect round score
+let roundScore = () => {
+    console.log(`Computer: ${computerScore}
+    You: ${humanScore}`)
+}
 
-    // }
+//i gameResult() provides a congratulatory message if successful
+//i gameResult() provides a GAME OVER if unsuccessful
+let gameResult = () => {
+    if (computerScore === 5) {
+        console.log(`
+            You lose.
+            GAME OVER!`)
+    } else if (humanScore === 5) {
+        console.log(`
+            Congratulations. 
+            You WIN!`);
+    } else {
+        console.log(`Error!`);
+    }
 }
 
 playGame();
-
-// pass `playRound(getHumanChoiceLowercase, computerChoice)` to result variable
-// playGame() contains a for statement
-// the for statement runs until (humanScore === 5) || (computerScore === 5)
-// IF ((humanscore === 5) || (computerScore === 5)
-//  ELSE IF humanScore === 5 
-//      THEN Congratulations, you win
-//  ELSE IF computerScore === 5
-//      THEN You lose
