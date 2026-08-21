@@ -130,7 +130,7 @@ function playGame() {
     // while condition finds the first player to reach 5
     //i the first false condition makes thes while condition false -> while (false && true) 
     //i while condition loops the playRound() as far as no player has reached score of 5
-    while ((computerScore < 5) && (humanScore < 5)) {
+    while ((computerScore < 2) && (humanScore < 2)) {
     console.log(`BEGIN ROUND!`);
     // call playRound() to play a round
     playRound(getHumanChoice(), getComputerChoice());
@@ -151,11 +151,11 @@ let roundScore = () => {
 //i gameResult() provides a congratulatory message if successful
 //i gameResult() provides a GAME OVER if unsuccessful
 let gameResult = () => {
-    if (computerScore === 5) {
+    if (computerScore === 2) {
         console.log(`
             You lose.
             GAME OVER!`)
-    } else if (humanScore === 5) {
+    } else if (humanScore === 2) {
         console.log(`
             Congratulations. 
             You WIN!`);
