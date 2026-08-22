@@ -35,13 +35,30 @@ function userRock() {
 
 
         let userChoice = "rock".toLowerCase();
-        let computerChoice = "paper".toLowerCase();
-        playRound(userChoice, computerChoice)
+        
+        playRound(userChoice, getComputerChoice())
     })
 
     // for chrome devtools debugging
     let event = new MouseEvent("click");
     btnRock.dispatchEvent(event);
+}
+
+let getComputerChoiceRandom = () => {
+        return Math.floor((Math.random() * 3) + 1);
+}
+
+let getComputerChoice = () => {
+    switch (getComputerChoiceRandom()) {
+        case 1:
+           return "rock";
+        case 2:
+            return "paper";
+        case 3:
+            return "scissors";
+        default:
+            return "rock_paper_scissors";
+    }
 }
 
 
