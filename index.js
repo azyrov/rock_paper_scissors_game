@@ -23,3 +23,25 @@ function test() {
 }
 
 userChoiceRock();
+
+let btnRock = document.createElement("button");
+let btnTextRock = document.createTextNode("Rock");
+btnRock.append(btnTextRock);
+div.append(btnRock);
+
+function userRock() {
+    btnRock.addEventListener("click", function (e) {
+        e.preventDefault();
+
+
+        let userChoice = "rock".toLowerCase();
+        let computerChoice = "rock".toLowerCase();
+        playRound(userChoice, computerChoice)
+    })
+}
+
+function playRound(userChoice, computerChoice) {
+    console.log(`${userChoice}, ${computerChoice}`)
+}
+
+userRock();
