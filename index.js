@@ -155,6 +155,13 @@ Scissors`);
     }
 }
 
+let roundScore = () => {
+    console.log(`Computer: ${computerScore}
+    You: ${humanScore}`)
+}
+
+
+
 userRock();
 userPaper();
 userScissors();
