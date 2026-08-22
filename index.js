@@ -29,6 +29,16 @@ let btnTextRock = document.createTextNode("Rock");
 btnRock.append(btnTextRock);
 div.append(btnRock);
 
+let btnPaper = document.createElement("button");
+let btnTextPaper = document.createTextNode("Paper");
+btnPaper.append(btnTextPaper);
+div.append(btnPaper);
+
+let btnScissors = document.createElement("button");
+let btnTextScissors = document.createTextNode("Scissors");
+btnScissors.append(btnTextScissors);
+div.append(btnScissors);
+
 function userRock() {
     btnRock.addEventListener("click", function (e) {
         e.preventDefault();
@@ -38,8 +48,26 @@ function userRock() {
         
         playRound(userChoice, getComputerChoice())
     })
+}
 
-    // for chrome devtoossh (event);
+function userPaper() {
+    btnPaper.addEventListener("click", function (e) {
+        e.preventDefault();
+
+
+        let userChoice = "paper".toLowerCase();
+        playRound(userChoice, getComputerChoice())
+    })
+}
+
+function userScissors() {
+    btnScissors.addEventListener("click", function (e) {
+        e.preventDefault();
+
+
+        let userChoice = "Scissors".toLowerCase();
+        playRound(userChoice, getComputerChoice())
+    })
 }
 
 let getComputerChoiceRandom = () => {
@@ -128,3 +156,5 @@ Scissors`);
 }
 
 userRock();
+userPaper();
+userScissors();
