@@ -35,13 +35,81 @@ function userRock() {
 
 
         let userChoice = "rock".toLowerCase();
-        let computerChoice = "rock".toLowerCase();
+        let computerChoice = "paper".toLowerCase();
         playRound(userChoice, computerChoice)
     })
+
+    // for chrome devtools debugging
+    let event = new MouseEvent("click");
+    btnRock.dispatchEvent(event);
 }
 
-function playRound(userChoice, computerChoice) {
-    console.log(`${userChoice}, ${computerChoice}`)
+
+    let computerScore = 0;
+    let humanScore = 0;
+
+let playRound = (userChoice, computerChoice) => {
+
+    if (userChoice === computerChoice) {
+        console.log(`Computer: ${computerChoice}
+        Your choice: ${userChoice}.
+        Jinx! Try again.
+        `);
+        
+
+    } else if (userChoice === "rock") {
+        if (computerChoice === "paper"){
+            console.log(`Computer: ${computerChoice}
+            Your Choice: ${userChoice}
+            You lose! Paper covers rock!`);
+            
+            return ++computerScore;
+
+        } else if (computerChoice === "scissors") {
+            console.log(`Computer: ${computerChoice}
+            Your Choice: ${userChoice}
+            You win! Rock breaks Scissors!`);
+
+            return ++humanScore;
+        }
+    } else if (userChoice === "paper") {
+        if (computerChoice === "rock") {
+            console.log(`Computer: ${computerChoice}
+            Your Choice: ${userChoice}
+            You win! Paper covers Rock`);
+
+            return ++humanScore;
+
+        } else if (computerChoice === "scissors") {
+            console.log(`Computer: ${computerChoice}
+            Your Choice: ${userChoice}
+            You lose! Scissors cuts Paper!
+            `);
+
+            return ++computerScore;
+        }
+    } else if (userChoice === "scissors") {
+        if (computerChoice === "rock") {
+            console.log(`Computer: ${computerChoice}
+            Your Choice: ${userChoice}
+            You lose! Rock breaks Scissors!`);
+            
+            return ++computerScore;
+
+        } else if (computerChoice === "paper") {
+            console.log(`Computer: ${computerChoice}
+            Your Choice: ${userChoice}
+            You win! Scissors cuts Paper!`);
+
+            return ++humanScore;
+
+        }
+    } else {
+        alert(`Please input only one of the following:
+Rock
+Paper
+Scissors`);
+    }
 }
 
 userRock();
