@@ -46,3 +46,17 @@ h6 {
 p {
   font-size: 1rem;
 }
+
+#container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+
+button {
+  height: 50px;
+  width: 100px;
+  border-radius: 15px;
+}
