@@ -39,6 +39,11 @@ let btnTextScissors = document.createTextNode("Scissors");
 btnScissors.append(btnTextScissors);
 div.append(btnScissors);
 
+// added a new abort signal
+// instantly removes listeners attached to elements
+const controller = new AbortController();
+
+
 function userRock() {
     btnRock.addEventListener("click", function (e) {
         e.preventDefault();
@@ -47,7 +52,9 @@ function userRock() {
         let userChoice = "rock".toLowerCase();
         
         playRound(userChoice, getComputerChoice())
-    })
+
+        roundScore();
+    },{signal: controller.signal})
 }
 
 function userPaper() {
@@ -57,7 +64,9 @@ function userPaper() {
 
         let userChoice = "paper".toLowerCase();
         playRound(userChoice, getComputerChoice())
-    })
+
+        roundScore();
+    },{signal: controller.signal})
 }
 
 function userScissors() {
@@ -67,7 +76,9 @@ function userScissors() {
 
         let userChoice = "Scissors".toLowerCase();
         playRound(userChoice, getComputerChoice())
-    })
+
+        roundScore();
+    },{signal: controller.signal})
 }
 
 let getComputerChoiceRandom = () => {
@@ -158,10 +169,35 @@ Scissors`);
 let roundScore = () => {
     console.log(`Computer: ${computerScore}
     You: ${humanScore}`)
+
+    if ((computerScore === 5) || (humanScore === 5)) {
+        console.log(gameResult());
+    }
+
+    
 }
 
+function playGame() {
 
+    userRock();
+    userPaper();
+    userScissors();
 
-userRock();
-userPaper();
-userScissors();
+    console.log(`Welome to ROCK, PAPER, SCISSORS!`);
+    console.log("Please Click a button to begin")
+    
+}
+
+let gameResult = () => {
+    if (computerScore === 5 ) {
+        controller.abort();
+        return `You lose.
+            GAME OVER!`;
+    } else if (humanScore === 5) {
+        controller.abort();
+        return `Congratulations. 
+            You WIN!`;
+    }
+}
+
+playGame();
