@@ -39,6 +39,27 @@ let btnTextScissors = document.createTextNode("Scissors");
 btnScissors.append(btnTextScissors);
 div.append(btnScissors);
 
+let display = document.createElement("div");
+let greetingMain = document.createTextNode(`Welcome to ROCK-PAPER-SCISSOR!`)
+let greetingInstruction = document.createTextNode(`Click a button to begin!`)
+
+let playerScore = document.createElement("p");
+playerScore.textContent = "";
+
+
+let compScore = document.createElement("p");
+compScore.textContent = "";
+
+
+display.append(greetingMain);
+display.append(greetingInstruction);
+display.append(playerScore);
+display.append(compScore);
+
+div.prepend(display);
+
+display.classList.add("display");
+
 // added a new abort signal
 // instantly removes listeners attached to elements
 const controller = new AbortController();
@@ -50,10 +71,12 @@ function userRock() {
 
 
         let userChoice = "rock".toLowerCase();
-        
-        playRound(userChoice, getComputerChoice())
 
-        roundScore();
+        let compChoice = getComputerChoice();
+
+        playRound(userChoice, compChoice)
+
+        roundScore(userChoice, compChoice);
     },{signal: controller.signal})
 }
 
@@ -63,9 +86,11 @@ function userPaper() {
 
 
         let userChoice = "paper".toLowerCase();
-        playRound(userChoice, getComputerChoice())
+        let compChoice = getComputerChoice();
 
-        roundScore();
+        playRound(userChoice, compChoice)
+
+        roundScore(userChoice, compChoice);
     },{signal: controller.signal})
 }
 
@@ -75,9 +100,12 @@ function userScissors() {
 
 
         let userChoice = "Scissors".toLowerCase();
-        playRound(userChoice, getComputerChoice())
 
-        roundScore();
+        let compChoice = getComputerChoice();
+
+        playRound(userChoice, compChoice)
+
+        roundScore(userChoice, compChoice);
     },{signal: controller.signal})
 }
 
@@ -166,7 +194,10 @@ Scissors`);
     }
 }
 
-let roundScore = () => {
+let roundScore = (userChoice, computerChoice) => {
+    playerScore.textContent = `You: ${humanScore}, ${userChoice}`;
+    compScore.textContent = `Computer: ${computerScore}, ${computerChoice}`;
+
     console.log(`Computer: ${computerScore}
     You: ${humanScore}`)
 
@@ -182,9 +213,6 @@ function playGame() {
     userRock();
     userPaper();
     userScissors();
-
-    console.log(`Welome to ROCK, PAPER, SCISSORS!`);
-    console.log("Please Click a button to begin")
     
 }
 
