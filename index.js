@@ -41,6 +41,7 @@ div.append(btnScissors);
 
 let display = document.createElement("div");
 let greetingMain = document.createTextNode(`Welcome to ROCK-PAPER-SCISSOR!`)
+let newLine = document.createElement("br");
 let greetingInstruction = document.createTextNode(`Click a button to begin!`)
 
 let playerScore = document.createElement("p");
@@ -50,9 +51,9 @@ playerScore.textContent = "";
 let compScore = document.createElement("p");
 compScore.textContent = "";
 
-
 display.append(greetingMain);
 display.append(greetingInstruction);
+display.insertBefore(newLine, greetingInstruction);
 display.append(playerScore);
 display.append(compScore);
 
@@ -127,8 +128,8 @@ let getComputerChoice = () => {
 }
 
 
-    let computerScore = 0;
-    let humanScore = 0;
+let computerScore = 0;
+let humanScore = 0;
 
 let playRound = (userChoice, computerChoice) => {
 
@@ -209,11 +210,9 @@ let roundScore = (userChoice, computerChoice) => {
 }
 
 function playGame() {
-
     userRock();
     userPaper();
     userScissors();
-    
 }
 
 let gameResult = () => {
