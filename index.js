@@ -39,9 +39,7 @@ function userRock() {
         playRound(userChoice, getComputerChoice())
     })
 
-    // for chrome devtools debugging
-    let event = new MouseEvent("click");
-    btnRock.dispatchEvent(event);
+    // for chrome devtoossh (event);
 }
 
 let getComputerChoiceRandom = () => {
