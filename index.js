@@ -9,7 +9,6 @@ let userChoiceRock = () => {
     btnTest.addEventListener("click", function (e) {
         e.preventDefault();
         let userChoice = 5;
-        // let compChoice = 2;
         calc(userChoice, test());
     })
 }
@@ -40,9 +39,11 @@ btnScissors.append(btnTextScissors);
 div.append(btnScissors);
 
 let display = document.createElement("div");
-let greetingMain = document.createTextNode(`Welcome to ROCK-PAPER-SCISSOR!`)
+let greetingMain = document.createTextNode(`Welcome to ROCK-PAPER-SCISSOR!`);
 let newLine = document.createElement("br");
-let greetingInstruction = document.createTextNode(`Click a button to begin!`)
+let greetingInstruction = document.createTextNode(`Click a button to begin!`);
+
+
 
 let playerScore = document.createElement("p");
 playerScore.textContent = "";
@@ -51,11 +52,15 @@ playerScore.textContent = "";
 let compScore = document.createElement("p");
 compScore.textContent = "";
 
+let winner = document.createTextNode("p");
+winner.textContent = "";
+
 display.append(greetingMain);
 display.append(greetingInstruction);
 display.insertBefore(newLine, greetingInstruction);
 display.append(playerScore);
 display.append(compScore);
+display.append(winner);
 
 div.prepend(display);
 
@@ -142,48 +147,23 @@ let playRound = (userChoice, computerChoice) => {
 
     } else if (userChoice === "rock") {
         if (computerChoice === "paper"){
-            console.log(`Computer: ${computerChoice}
-            Your Choice: ${userChoice}
-            You lose! Paper covers rock!`);
-            
             return ++computerScore;
 
         } else if (computerChoice === "scissors") {
-            console.log(`Computer: ${computerChoice}
-            Your Choice: ${userChoice}
-            You win! Rock breaks Scissors!`);
-
             return ++humanScore;
         }
     } else if (userChoice === "paper") {
         if (computerChoice === "rock") {
-            console.log(`Computer: ${computerChoice}
-            Your Choice: ${userChoice}
-            You win! Paper covers Rock`);
-
             return ++humanScore;
 
         } else if (computerChoice === "scissors") {
-            console.log(`Computer: ${computerChoice}
-            Your Choice: ${userChoice}
-            You lose! Scissors cuts Paper!
-            `);
-
             return ++computerScore;
         }
     } else if (userChoice === "scissors") {
-        if (computerChoice === "rock") {
-            console.log(`Computer: ${computerChoice}
-            Your Choice: ${userChoice}
-            You lose! Rock breaks Scissors!`);
-            
+        if (computerChoice === "rock") {            
             return ++computerScore;
 
         } else if (computerChoice === "paper") {
-            console.log(`Computer: ${computerChoice}
-            Your Choice: ${userChoice}
-            You win! Scissors cuts Paper!`);
-
             return ++humanScore;
 
         }
@@ -196,17 +176,13 @@ Scissors`);
 }
 
 let roundScore = (userChoice, computerChoice) => {
-    playerScore.textContent = `You: ${humanScore}, ${userChoice}`;
-    compScore.textContent = `Computer: ${computerScore}, ${computerChoice}`;
-
-    console.log(`Computer: ${computerScore}
-    You: ${humanScore}`)
+    playerScore.textContent = `You: ${humanScore} (${userChoice})`;
+    compScore.textContent = `Computer: ${computerScore} (${computerChoice})`;
 
     if ((computerScore === 5) || (humanScore === 5)) {
-        console.log(gameResult());
+        gameResult(humanScore, computerScore);
     }
 
-    
 }
 
 function playGame() {
@@ -215,16 +191,14 @@ function playGame() {
     userScissors();
 }
 
-let gameResult = () => {
-    if (computerScore === 5 ) {
-        controller.abort();
-        return `You lose.
-            GAME OVER!`;
-    } else if (humanScore === 5) {
-        controller.abort();
-        return `Congratulations. 
-            You WIN!`;
-    }
+let gameResult = (humanScore, computerScore) => {
+        if (humanScore === 5) {
+            winner.textContent = "You won! CONGRATULATIONS";
+            controller.abort()
+        } else if (computerScore === 5) {
+            winner.textContent = "Computer won. GAME OVER";
+            controller.abort()
+        }
 }
 
 playGame();
